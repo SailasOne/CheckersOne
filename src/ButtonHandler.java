@@ -112,35 +112,6 @@ public class ButtonHandler implements ActionListener {
                     }
                 }
             }
-            /*for (int a = 0; a < 8; a++) {
-                for (int b = 0; b < 8; b++) {
-                    if ((a + b) % 2 != 0) {
-                        if(GridLayoutManager.isValidMove(a,b,a+1,b-1,true) || GridLayoutManager.isValidMove(a,b,a+1,b+1,true))
-                        {
-                            Checkers.first = "first";
-                        }
-                        if(GridLayoutManager.isValidMove(a,b,a-1,b-1,false) || GridLayoutManager.isValidMove(a,b,a-1,b+1,false)){
-                            Checkers.second = "second";
-                        }
-                        for (int i = 0; i < 8; i++) {
-                            for (int j = 0; j < 8; j++) {
-                                if ((i + j) % 2 != 0) {
-                                    if(GridLayoutManager.isValidMove(a,b,i,j,true)) {
-                                        Checkers.first="first";
-                                    }
-                                    if(GridLayoutManager.isValidMove(a,b,i,j,false)) {
-                                        Checkers.first="second";
-                                    }
-                                    }
-                                }
-                                }
-
-                    }
-                }
-            }*/
-            //if(Checkers.first.equals("first") && !Checkers.second.equals("second")){}
-            //else if(Checkers.second.equals("second") &&!Checkers.first.equals("first")){}
-            //else if(Checkers.first.equals("first") && Checkers.second.equals("second")){}
             if(Checkers.whiteCount==0){
                 JFrame w = new JFrame();
                 w.setSize(250,250);
