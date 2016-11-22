@@ -161,7 +161,8 @@ public class ButtonHandler implements ActionListener {
 
 
             }
-        else return;
-    }}
+            //return;
+    }
+}
 
 
