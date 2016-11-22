@@ -70,18 +70,18 @@ import java.io.IOException;
             boardarray[4][5] = new BoardCell("f4",false, CellColor.CLEAN, 4, 5, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[4][7] = new BoardCell("h4",false, CellColor.CLEAN, 4, 7, false, false, false,false,false,false,false,false,false,false,false,false,false);
 
-            boardarray[5][0] = new BoardCell("a3",false, CellColor.CLEAN, 5, 0, false, false, false,false,false,false,false,false,false,false,false,false,false);
-            boardarray[5][2] = new BoardCell("c3",false, CellColor.CLEAN, 5, 2, false, false, false,false,false,false,false,false,false,false,false,false,false);
-            boardarray[5][4] = new BoardCell("e3",false, CellColor.CLEAN, 5, 4, false, false, false,false,false,false,false,false,false,false,false,false,false);
-            boardarray[5][6] = new BoardCell("g3",false, CellColor.CLEAN, 5, 6, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[5][0] = new BoardCell("a3",false, CellColor.BLACK, 5, 0, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[5][2] = new BoardCell("c3",false, CellColor.BLACK, 5, 2, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[5][4] = new BoardCell("e3",false, CellColor.BLACK, 5, 4, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[5][6] = new BoardCell("g3",false, CellColor.BLACK, 5, 6, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[6][1] = new BoardCell("b2",false, CellColor.BLACK, 6, 1, false, false, false,false,false,false,false,false,false,false,false,false,false);
-            boardarray[6][3] = new BoardCell("d2",false, CellColor.CLEAN, 6, 3, false, false, false,false,false,false,false,false,false,false,false,false,false);
-            boardarray[6][5] = new BoardCell("f2",false, CellColor.CLEAN, 6, 5, false, false, false,false,false,false,false,false,false,false,false,false,false);
-            boardarray[6][7] = new BoardCell("h2",false, CellColor.CLEAN, 6, 7, false, false, false,false,false,false,false,false,false,false,false,false,false);
-            boardarray[7][0] = new BoardCell("a1",false, CellColor.CLEAN, 7, 0, false, false, false,false,false,false,false,false,false,false,false,false,false);
-            boardarray[7][2] = new BoardCell("c1",false, CellColor.CLEAN, 7, 2, false, false, false,false,false,false,false,false,false,false,false,false,false);
-            boardarray[7][4] = new BoardCell("e1",false, CellColor.CLEAN, 7, 4, false, false, false,false,false,false,false,false,false,false,false,false,false);
-            boardarray[7][6] = new BoardCell("g1",false, CellColor.CLEAN, 7, 6, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[6][3] = new BoardCell("d2",false, CellColor.BLACK, 6, 3, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[6][5] = new BoardCell("f2",false, CellColor.BLACK, 6, 5, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[6][7] = new BoardCell("h2",false, CellColor.BLACK, 6, 7, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[7][0] = new BoardCell("a1",false, CellColor.BLACK, 7, 0, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[7][2] = new BoardCell("c1",false, CellColor.BLACK, 7, 2, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[7][4] = new BoardCell("e1",false, CellColor.BLACK, 7, 4, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[7][6] = new BoardCell("g1",false, CellColor.BLACK, 7, 6, false, false, false,false,false,false,false,false,false,false,false,false,false);
         }
         static String SwapPlayer(){
             String one,two;
@@ -309,6 +309,6 @@ import java.io.IOException;
                 col = j;
             }
         }
-       //else return;
+       else return;
     }
 }
