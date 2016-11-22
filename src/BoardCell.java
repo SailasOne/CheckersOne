@@ -32,10 +32,10 @@ public class BoardCell extends JButton implements Movable,Capturable {
     public boolean fourWayE1H4; // e1, f2, g3, h4
 
 
-    static ImageIcon icon1 = new ImageIcon("/Users/SailaS/Documents/2a1f95d15b9b4a1eb3b4f10db1e0c2c3.png");
-    static ImageIcon icon2 = new ImageIcon("/Users/SailaS/Documents/3b9b3c46ba1448c6a3e51a16269ad4c1.png");
-    static ImageIcon iconqueenWhite = new ImageIcon("/Users/SailaS/Documents/queenAlienWhite2.png");
-    static ImageIcon iconqueenBlack = new ImageIcon("/Users/SailaS/Documents/queenAlienBlack.png");
+    static ImageIcon icon1 = new ImageIcon("/Users/SailaS/IdeaProjects/Checkers/checkerblack.png");
+    static ImageIcon icon2 = new ImageIcon("/Users/SailaS/IdeaProjects/Checkers/checkerwhite.png");
+    static ImageIcon iconqueenWhite = new ImageIcon("/Users/SailaS/IdeaProjects/Checkers/queenAlienWhite2.png");
+    static ImageIcon iconqueenBlack = new ImageIcon("/Users/SailaS/IdeaProjects/Checkers/queenAlienBlack.png");
     static Image img = icon1.getImage();
     static Image img2 = icon2.getImage();
     static Image img3 = iconqueenWhite.getImage();
