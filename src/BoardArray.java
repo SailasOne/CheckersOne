@@ -161,27 +161,15 @@ public class BoardArray extends JFrame
     public static void DeleteCaptured(int i, int j, int g, int h){
         if(g<i && h>j){
         GridLayoutManager.boardarray[g+1][h-1].captured=true;
-            /*GridLayoutManager.boardarray[g+1][h-1].color=CellColor.CLEAN;
-            GridLayoutManager.boardarray[g+1][h-1].addWay(CellColor.CLEAN);
-            GridLayoutManager.squares2[g+1][h-1].setIcon(null);*/
         }
         else if(g<i && h<j){
             GridLayoutManager.boardarray[g+1][h+1].captured=true;
-            /*GridLayoutManager.boardarray[g+1][h+1].color=CellColor.CLEAN;
-            GridLayoutManager.boardarray[g+1][h+1].addWay(CellColor.CLEAN);
-            GridLayoutManager.squares2[g+1][h+1].setIcon(null);*/
         }
         else if(g>i && h<j){
             GridLayoutManager.boardarray[g-1][h+1].captured=true;
-            /*GridLayoutManager.boardarray[g-1][h+1].color=CellColor.CLEAN;
-            GridLayoutManager.boardarray[g-1][h+1].addWay(CellColor.CLEAN);
-            GridLayoutManager.squares2[g-1][h+1].setIcon(null);*/
         }
         else if(g>i && h>j){
             GridLayoutManager.boardarray[g-1][h-1].captured=true;
-            /*GridLayoutManager.boardarray[g-1][h-1].color=CellColor.CLEAN;
-            GridLayoutManager.boardarray[g-1][h-1].addWay(CellColor.CLEAN);
-            GridLayoutManager.squares2[g-1][h-1].setIcon(null);*/
         }
     }
 }

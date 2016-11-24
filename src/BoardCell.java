@@ -1,11 +1,8 @@
-import javax.imageio.ImageIO;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.io.File;
-import java.io.IOException;
 import java.util.Objects;
+import java.nio.file.Paths;
 
 
 public class BoardCell extends JButton implements Movable,Capturable {
@@ -31,30 +28,17 @@ public class BoardCell extends JButton implements Movable,Capturable {
     public boolean fourWayA5D8; // a5, b6, c7, d8
     public boolean fourWayE1H4; // e1, f2, g3, h4
 
+    public static final String LOCAL_DIR = Paths.get(".").toAbsolutePath().normalize().toString();
 
-    static ImageIcon icon1 = new ImageIcon("/Users/SailaS/IdeaProjects/Checkers/checkerblack.png");
-    static ImageIcon icon2 = new ImageIcon("/Users/SailaS/IdeaProjects/Checkers/checkerwhite.png");
-    static ImageIcon iconqueenWhite = new ImageIcon("/Users/SailaS/IdeaProjects/Checkers/queenAlienWhite2.png");
-    static ImageIcon iconqueenBlack = new ImageIcon("/Users/SailaS/IdeaProjects/Checkers/queenAlienBlack.png");
-    static Image img = icon1.getImage();
-    static Image img2 = icon2.getImage();
-    static Image img3 = iconqueenWhite.getImage();
-    static Image img4 = iconqueenBlack.getImage();
-    static Image newimg1 = img.getScaledInstance(75,75, java.awt.Image.SCALE_SMOOTH);
-    static Image newimg2 = img2.getScaledInstance(75,75, java.awt.Image.SCALE_SMOOTH);
-    static Image newimg3 = img3.getScaledInstance(75,75, java.awt.Image.SCALE_SMOOTH);
-    static Image newimg4 = img4.getScaledInstance(75,75, java.awt.Image.SCALE_SMOOTH);
-
-    static ImageIcon checkerBlack = new ImageIcon(newimg1);
-    static ImageIcon checkerWhite = new ImageIcon(newimg2);
-
-    static ImageIcon queenWhite = new ImageIcon(newimg3);
-    static ImageIcon queenBlack = new ImageIcon(newimg4);
-
-    public void queenCrown(){
-        this.queen = true;
+    static public ImageIcon resizeIcon(String ImgPath){
+        return new ImageIcon(new ImageIcon(ImgPath).getImage().getScaledInstance(75,75,java.awt.Image.SCALE_SMOOTH));
     }
 
+    static ImageIcon checkerBlack = resizeIcon(LOCAL_DIR + "/checkerblack.png");
+    static ImageIcon checkerWhite = resizeIcon(LOCAL_DIR + "/checkerwhite.png");
+
+    static ImageIcon queenWhite = resizeIcon(LOCAL_DIR + "/queenAlienWhite2.png");
+    static ImageIcon queenBlack = resizeIcon(LOCAL_DIR + "/queenAlienBlack.png");
 
     public BoardCell(String name,boolean captured, CellColor color, int x, int y, boolean queen, boolean border, boolean eightWay, boolean sevenWayG1A7, boolean sevenWayH2B8,
                      boolean sixWayC1H6, boolean sixWayA3F8, boolean threeWayC1A3, boolean threeWayH6F8, boolean fiveWayH4D8, boolean fiveWayE1A5, boolean fourWayA5D8,
