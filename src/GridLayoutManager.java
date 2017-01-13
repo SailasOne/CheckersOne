@@ -11,13 +11,13 @@ import java.io.IOException;
         static Color colorBlack = Color.BLACK; //Black square
         static int one = 7;
         static int two = 1;
-        static int row = 7 ;
+        static int row = 7;
         static int col = 1;
         static boolean attackInd = false; //false default
         static boolean attack = false; //false default
         static  String player = "white";
         static String player2 = "black";
-        static String timeCurrent = "";
+        static String timeCurrent = "checkerWhite";
         static String current = "checkerBlack";
         static boolean queenTurn = false;
 
@@ -59,7 +59,7 @@ import java.io.IOException;
             boardarray[2][1] = new BoardCell("b6",false, CellColor.WHITE, 2, 1, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[2][3] = new BoardCell("d6",false, CellColor.WHITE, 2, 3, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[2][5] = new BoardCell("f6",false, CellColor.WHITE, 2, 5, false, false, false,false,false,false,false,false,false,false,false,false,false);
-            boardarray[2][7] = new BoardCell("h6",false, CellColor.WHITE, 2, 7, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[2][7] = new BoardCell("h6",false, CellColor.WHITE, 2, 7, true, false, false,false,false,false,false,false,false,false,false,false,false);
 
             boardarray[3][0] = new BoardCell("a5",false, CellColor.CLEAN, 3, 0, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[3][2] = new BoardCell("c5",false, CellColor.CLEAN, 3, 2, false, false, false,false,false,false,false,false,false,false,false,false,false);
@@ -70,12 +70,12 @@ import java.io.IOException;
             boardarray[4][5] = new BoardCell("f4",false, CellColor.CLEAN, 4, 5, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[4][7] = new BoardCell("h4",false, CellColor.CLEAN, 4, 7, false, false, false,false,false,false,false,false,false,false,false,false,false);
 
-            boardarray[5][0] = new BoardCell("a3",false, CellColor.BLACK, 5, 0, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[5][0] = new BoardCell("a3",false, CellColor.CLEAN, 5, 0, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[5][2] = new BoardCell("c3",false, CellColor.BLACK, 5, 2, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[5][4] = new BoardCell("e3",false, CellColor.BLACK, 5, 4, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[5][6] = new BoardCell("g3",false, CellColor.BLACK, 5, 6, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[6][1] = new BoardCell("b2",false, CellColor.BLACK, 6, 1, false, false, false,false,false,false,false,false,false,false,false,false,false);
-            boardarray[6][3] = new BoardCell("d2",false, CellColor.BLACK, 6, 3, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[6][3] = new BoardCell("d2",false, CellColor.CLEAN, 6, 3, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[6][5] = new BoardCell("f2",false, CellColor.BLACK, 6, 5, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[6][7] = new BoardCell("h2",false, CellColor.BLACK, 6, 7, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[7][0] = new BoardCell("a1",false, CellColor.BLACK, 7, 0, false, false, false,false,false,false,false,false,false,false,false,false,false);
@@ -85,6 +85,8 @@ import java.io.IOException;
         }
         static String SwapPlayer(){
             String one,two;
+            if(timeCurrent=="checkerWhite"){timeCurrent="checkerBlack";}
+            else {timeCurrent="checkerWhite";}
 
             one = player;
             two = player2;
@@ -128,37 +130,79 @@ import java.io.IOException;
 
     static boolean isCheckerChosen(int i, int j) {
         if (boardarray[i][j].color == CellColor.WHITE) {
-            if (timeCurrent.equals("checkerWhite")) {
+            if (timeCurrent.equals("checkerWhite") && !attack) {
                 if(queenTurn){
                     boardarray[one][two].queen=true;
                     boardarray[row][col].queen=false;
                     queenTurn=false;
                     boardarray[one][two].change(CellColor.WHITE);
                     boardarray[row][col].change(CellColor.CLEAN);
-                    squares2[one][two].setBackground(colorBlack);
+                    boardarray[one][two].choseChecker(false);
+                    //squares2[one][two].setBackground(colorBlack);
                 }
                     else{
-                boardarray[one][two].change(CellColor.WHITE);
-                boardarray[row][col].change(CellColor.CLEAN);
-                squares2[one][two].setBackground(colorBlack);}
+                    boardarray[one][two].change(CellColor.WHITE);
+                    boardarray[row][col].change(CellColor.CLEAN);
+                    boardarray[one][two].choseChecker(false);
+                //squares2[one][two].setBackground(colorBlack);
+                    }
             }
-        } else if (boardarray[i][j].color == CellColor.BLACK) {
-            if (timeCurrent.equals("checkerBlack")) {
+            if (timeCurrent.equals("checkerWhite") && attack) {
+                if(queenTurn){
+                    boardarray[one][two].queen=true;
+                    boardarray[row][col].queen=false;
+                    queenTurn=false;
+                    boardarray[one][two].choseChecker(true);
+                    boardarray[row][col].choseChecker(false);
+                    boardarray[one][two].choseChecker(false);
+                    //squares2[one][two].setBackground(colorBlack);
+                }
+                else{
+                    boardarray[one][two].choseChecker(true);
+                    boardarray[row][col].choseChecker(false);
+                    boardarray[one][two].choseChecker(false);
+                    //squares2[one][two].setBackground(colorBlack);
+                }
+            }
+        } else if (boardarray[i][j].color == CellColor.BLACK ) {
+            if (timeCurrent.equals("checkerBlack")&& !attack) {
                 if(queenTurn){
                     boardarray[one][two].queen=true;
                     boardarray[row][col].queen=false;
                     queenTurn=false;
                     boardarray[one][two].change(CellColor.BLACK);
                     boardarray[row][col].change(CellColor.CLEAN);
-                    squares2[one][two].setBackground(colorBlack);
+                    boardarray[one][two].choseChecker(false);
+                    //squares2[one][two].setBackground(colorBlack);
                 }
                 else{
-                boardarray[one][two].change(CellColor.BLACK);
-                boardarray[row][col].change(CellColor.CLEAN);
-                squares2[one][two].setBackground(colorBlack);}
+                    boardarray[one][two].change(CellColor.BLACK);
+                    boardarray[row][col].change(CellColor.CLEAN);
+                    boardarray[one][two].choseChecker(false);
+                //squares2[one][two].setBackground(colorBlack);
+                    }
+            }
+            if (timeCurrent.equals("checkerBlack") && attack) {
+                if(queenTurn){
+                    boardarray[one][two].queen=true;
+                    boardarray[row][col].queen=false;
+                    queenTurn=false;
+                    boardarray[one][two].choseChecker(true);
+                    boardarray[row][col].choseChecker(false);
+                    boardarray[one][two].choseChecker(false);
+                    //squares2[one][two].setBackground(colorBlack);
+                }
+                else{
+                    boardarray[one][two].choseChecker(true);
+                    boardarray[row][col].choseChecker(false);
+                    boardarray[one][two].choseChecker(false);
+                    //squares2[one][two].setBackground(colorBlack);
+                }
             }
         }
+
         boardarray[i][j].choseChecker(true);
+
         if (boardarray[i][j].color == CellColor.WHITE ) {
             current = "checkerWhite";
             return true;

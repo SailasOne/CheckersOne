@@ -133,10 +133,6 @@ public class BoardArray extends JFrame
             GridLayoutManager.boardarray[i][j].fourWayE1H4=true;
             FourWayE1H4[a]=GridLayoutManager.boardarray[i][j];
         }
-
-
-
-
         // g1, f2, e3, d4, c5, b6, a7
 
         // h2, g3, f4, e5, d6, c7, b8
@@ -156,7 +152,6 @@ public class BoardArray extends JFrame
         // a5, b6, c7, d8
 
         // e1, f2, g3, h4
-
     }
     public static void DeleteCaptured(int i, int j, int g, int h){
         if(g<i && h>j){

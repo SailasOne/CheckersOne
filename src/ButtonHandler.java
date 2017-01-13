@@ -92,12 +92,12 @@ public class ButtonHandler implements ActionListener {
                 }}
 
             GridLayoutManager.current="checkerBlack";
-            GridLayoutManager.timeCurrent="";
             GridLayoutManager.one = 7;
             GridLayoutManager.two = 1;
             GridLayoutManager.row = 7;
             GridLayoutManager.col = 1;
             GridLayoutManager.attack=false;
+            GridLayoutManager.attackInd=false;
             GridLayoutManager.queenTurn=false;
             Checkers.first="";
             Checkers.second="";
