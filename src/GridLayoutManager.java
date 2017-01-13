@@ -59,7 +59,7 @@ import java.io.IOException;
             boardarray[2][1] = new BoardCell("b6",false, CellColor.WHITE, 2, 1, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[2][3] = new BoardCell("d6",false, CellColor.WHITE, 2, 3, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[2][5] = new BoardCell("f6",false, CellColor.WHITE, 2, 5, false, false, false,false,false,false,false,false,false,false,false,false,false);
-            boardarray[2][7] = new BoardCell("h6",false, CellColor.WHITE, 2, 7, true, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[2][7] = new BoardCell("h6",false, CellColor.WHITE, 2, 7, false, false, false,false,false,false,false,false,false,false,false,false,false);
 
             boardarray[3][0] = new BoardCell("a5",false, CellColor.CLEAN, 3, 0, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[3][2] = new BoardCell("c5",false, CellColor.CLEAN, 3, 2, false, false, false,false,false,false,false,false,false,false,false,false,false);
@@ -70,12 +70,12 @@ import java.io.IOException;
             boardarray[4][5] = new BoardCell("f4",false, CellColor.CLEAN, 4, 5, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[4][7] = new BoardCell("h4",false, CellColor.CLEAN, 4, 7, false, false, false,false,false,false,false,false,false,false,false,false,false);
 
-            boardarray[5][0] = new BoardCell("a3",false, CellColor.CLEAN, 5, 0, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[5][0] = new BoardCell("a3",false, CellColor.BLACK, 5, 0, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[5][2] = new BoardCell("c3",false, CellColor.BLACK, 5, 2, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[5][4] = new BoardCell("e3",false, CellColor.BLACK, 5, 4, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[5][6] = new BoardCell("g3",false, CellColor.BLACK, 5, 6, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[6][1] = new BoardCell("b2",false, CellColor.BLACK, 6, 1, false, false, false,false,false,false,false,false,false,false,false,false,false);
-            boardarray[6][3] = new BoardCell("d2",false, CellColor.CLEAN, 6, 3, false, false, false,false,false,false,false,false,false,false,false,false,false);
+            boardarray[6][3] = new BoardCell("d2",false, CellColor.BLACK, 6, 3, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[6][5] = new BoardCell("f2",false, CellColor.BLACK, 6, 5, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[6][7] = new BoardCell("h2",false, CellColor.BLACK, 6, 7, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[7][0] = new BoardCell("a1",false, CellColor.BLACK, 7, 0, false, false, false,false,false,false,false,false,false,false,false,false,false);
