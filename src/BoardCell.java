@@ -6,41 +6,42 @@ import java.nio.file.Paths;
 
 
 public class BoardCell extends JButton implements Movable,Capturable {
-    public String name;
-    public int x;
-    public int y;
-    CellColor color;
-    boolean queen;
-    boolean border;
-    boolean captured;
-    public boolean eightWay;  // a1, b2, c3, d4, e5, f6, g7, h8
+    private String name;
+    private int x;
+    private int y;
+    private CellColor color;
+    private boolean queen;
+    private boolean border;
+    private boolean captured;
 
-    public boolean sevenWayG1A7; // g1, f2, e3, d4, c5, b6, a7
-    public boolean sevenWayH2B8; // h2, g3, f4, e5, d6, c7, b8
+    private boolean eightWay;  // a1, b2, c3, d4, e5, f6, g7, h8
 
-    public boolean sixWayC1H6; // c1, d2, e3, f4, g5, h6
-    public boolean sixWayA3F8; // a3, b4, c5, d6, e7, f8
-    public boolean threeWayC1A3; // c1, b2, a3
-    public boolean threeWayH6F8; // h6, g7, f8
+    private boolean sevenWayG1A7; // g1, f2, e3, d4, c5, b6, a7
+    private boolean sevenWayH2B8; // h2, g3, f4, e5, d6, c7, b8
 
-    public boolean fiveWayH4D8; // h4, g5, f6, e7, d8
-    public boolean fiveWayE1A5; // e1, d2, c3, b4, a5
-    public boolean fourWayA5D8; // a5, b6, c7, d8
-    public boolean fourWayE1H4; // e1, f2, g3, h4
+    private boolean sixWayC1H6; // c1, d2, e3, f4, g5, h6
+    private boolean sixWayA3F8; // a3, b4, c5, d6, e7, f8
+    private boolean threeWayC1A3; // c1, b2, a3
+    private boolean threeWayH6F8; // h6, g7, f8
 
-    public static final String LOCAL_DIR = Paths.get(".").toAbsolutePath().normalize().toString();
+    private boolean fiveWayH4D8; // h4, g5, f6, e7, d8
+    private boolean fiveWayE1A5; // e1, d2, c3, b4, a5
+    private boolean fourWayA5D8; // a5, b6, c7, d8
+    private boolean fourWayE1H4; // e1, f2, g3, h4
 
-    static public ImageIcon resizeIcon(String ImgPath){
+    private static final String LOCAL_DIR = Paths.get(".").toAbsolutePath().normalize().toString();
+
+    private static ImageIcon resizeIcon(String ImgPath){
         return new ImageIcon(new ImageIcon(ImgPath).getImage().getScaledInstance(75,75,java.awt.Image.SCALE_SMOOTH));
     }
 
-    static ImageIcon checkerBlack = resizeIcon(LOCAL_DIR + "/checkerblack.png");
-    static ImageIcon checkerWhite = resizeIcon(LOCAL_DIR + "/checkerwhite.png");
+    private static ImageIcon checkerBlack = resizeIcon(LOCAL_DIR + "/checkerblack.png");
+    private static ImageIcon checkerWhite = resizeIcon(LOCAL_DIR + "/checkerwhite.png");
 
-    static ImageIcon queenWhite = resizeIcon(LOCAL_DIR + "/queenAlienWhite2.png");
-    static ImageIcon queenBlack = resizeIcon(LOCAL_DIR + "/queenAlienBlack.png");
+    private static ImageIcon queenWhite = resizeIcon(LOCAL_DIR + "/queenAlienWhite2.png");
+    private static ImageIcon queenBlack = resizeIcon(LOCAL_DIR + "/queenAlienBlack.png");
 
-    public BoardCell(String name,boolean captured, CellColor color, int x, int y, boolean queen, boolean border, boolean eightWay, boolean sevenWayG1A7, boolean sevenWayH2B8,
+    BoardCell(String name,boolean captured, CellColor color, int x, int y, boolean queen, boolean border, boolean eightWay, boolean sevenWayG1A7, boolean sevenWayH2B8,
                      boolean sixWayC1H6, boolean sixWayA3F8, boolean threeWayC1A3, boolean threeWayH6F8, boolean fiveWayH4D8, boolean fiveWayE1A5, boolean fourWayA5D8,
                     boolean fourWayE1H4){
         this.name = name;
@@ -64,66 +65,135 @@ public class BoardCell extends JButton implements Movable,Capturable {
         addIcon(this.x,this.y, this.color, this.queen);
     }
 
-    public boolean walkingQueen(int a, int b){
+    void setEightWay(boolean eightWay) {
+        this.eightWay = eightWay;
+    }
+
+    void setSevenWayG1A7(boolean sevenWayG1A7) {
+        this.sevenWayG1A7 = sevenWayG1A7;
+    }
+
+    void setSevenWayH2B8(boolean sevenWayH2B8) {
+        this.sevenWayH2B8 = sevenWayH2B8;
+    }
+
+    void setSixWayC1H6(boolean sixWayC1H6) {
+        this.sixWayC1H6 = sixWayC1H6;
+    }
+
+    void setSixWayA3F8(boolean sixWayA3F8) {
+        this.sixWayA3F8 = sixWayA3F8;
+    }
+
+    void setThreeWayC1A3(boolean threeWayC1A3) {
+        this.threeWayC1A3 = threeWayC1A3;
+    }
+
+    void setThreeWayH6F8(boolean threeWayH6F8) {
+        this.threeWayH6F8 = threeWayH6F8;
+    }
+
+    void setFiveWayH4D8(boolean fiveWayH4D8) {
+        this.fiveWayH4D8 = fiveWayH4D8;
+    }
+
+    void setFiveWayE1A5(boolean fiveWayE1A5) {
+        this.fiveWayE1A5 = fiveWayE1A5;
+    }
+
+    void setFourWayA5D8(boolean fourWayA5D8) {
+        this.fourWayA5D8 = fourWayA5D8;
+    }
+
+    void setFourWayE1H4(boolean fourWayE1H4) {
+        this.fourWayE1H4 = fourWayE1H4;
+    }
+
+    boolean getCaptured(){
+        return this.captured;
+    }
+    void setCaptured(boolean captured){
+        this.captured=captured;
+    }
+    boolean getCellBorder(){
+        return this.border;
+    }
+    void setCellBorder(boolean border){
+        this.border=border;
+    }
+    CellColor getCellColor(){
+        return this.color;
+    }
+    void setCellColor(CellColor color){
+        this.color=color;
+    }
+    boolean getQueen() {
+        return this.queen;
+    }
+    void setQueen (boolean queen){
+        this.queen=queen;
+    }
+
+    boolean walkingQueen(int a, int b){
             if (this.eightWay) {
-                if (this.walkingQueenInner(BoardArray.EightWay, a, b)) {
+                if (this.walkingQueenInner(BoardArray.getEightWay(), a, b)) {
                 return true;
                 }
             }
             if (this.sevenWayG1A7) {
-                if (this.walkingQueenInner(BoardArray.SevenWayG1A7, a, b)) {
+                if (this.walkingQueenInner(BoardArray.getSevenWayG1A7(), a, b)) {
                     return true;
                 }
             }
             if (this.sevenWayH2B8) {
-                if (this.walkingQueenInner(BoardArray.SevenWayH2B8, a, b)) {
+                if (this.walkingQueenInner(BoardArray.getSevenWayH2B8(), a, b)) {
                     return true;
                 }
             }
             if (this.sixWayC1H6) {
-                if (this.walkingQueenInner(BoardArray.SixWayC1H6, a, b)) {
+                if (this.walkingQueenInner(BoardArray.getSixWayC1H6(), a, b)) {
                     return true;
                 }
             }
             if (this.sixWayA3F8) {
-                if (this.walkingQueenInner(BoardArray.SixWayA3F8, a, b)) {
+                if (this.walkingQueenInner(BoardArray.getSixWayA3F8(), a, b)) {
                     return true;
                 }
             }
             if (this.threeWayC1A3) {
-                if (this.walkingQueenInner(BoardArray.ThreeWayC1A3, a, b)) {
+                if (this.walkingQueenInner(BoardArray.getThreeWayC1A3(), a, b)) {
                     return true;
                 }
             }
             if (this.threeWayH6F8) {
-                if (this.walkingQueenInner(BoardArray.ThreeWayH6F8, a, b)) {
+                if (this.walkingQueenInner(BoardArray.getThreeWayH6F8(), a, b)) {
                     return true;
                 }
             }
             if (this.fiveWayH4D8) {
-                if (this.walkingQueenInner(BoardArray.FiveWayH4D8, a, b)) {
+                if (this.walkingQueenInner(BoardArray.getFiveWayH4D8(), a, b)) {
                     return true;
                 }
             }
             if (this.fiveWayE1A5) {
-                if (this.walkingQueenInner(BoardArray.FiveWayE1A5, a, b)) {
+                if (this.walkingQueenInner(BoardArray.getFiveWayE1A5(), a, b)) {
                     return true;
                 }
             }
             if (this.fourWayA5D8) {
-                if (this.walkingQueenInner(BoardArray.FourWayA5D8, a, b)) {
+                if (this.walkingQueenInner(BoardArray.getFourWayA5D8(), a, b)) {
                     return true;
                 }
             }
             if (this.fourWayE1H4) {
-                if (this.walkingQueenInner(BoardArray.FourWayE1H4, a, b)) {
+                if (this.walkingQueenInner(BoardArray.getFourWayE1H4(), a, b)) {
                     return true;
                 }
             }
         return false;
     }
 
-    public boolean walkingQueenInner(BoardCell[] Way, int a, int b){
+    boolean walkingQueenInner(BoardCell[] Way, int a, int b){
         int n=0;
         for(int i=0; i<Way.length;i++) {
             if (this == Way[i]) {
@@ -133,7 +203,7 @@ public class BoardCell extends JButton implements Movable,Capturable {
                         while (n < Way.length && Way[n].color == CellColor.CLEAN) {
                             if (GridLayoutManager.boardarray[a][b] == Way[n]) {
                                 GridLayoutManager.boardarray[a][b].queen=true;
-                                GridLayoutManager.queenTurn=true;
+                                GridLayoutManager.setQueenTurn(true);
                                 this.queen=false;
                                 return true;
                             }
@@ -144,7 +214,7 @@ public class BoardCell extends JButton implements Movable,Capturable {
                         while (n >= 0 && Way[n].color == CellColor.CLEAN) {
                             if (GridLayoutManager.boardarray[a][b] == Way[n]) {
                                 GridLayoutManager.boardarray[a][b].queen=true;
-                                GridLayoutManager.queenTurn=true;
+                                GridLayoutManager.setQueenTurn(true);
                                 this.queen=false;
                                 return true;
                             }
@@ -162,7 +232,7 @@ public class BoardCell extends JButton implements Movable,Capturable {
             int n = 0;
             //int d = 0;
             if (this == Way[i]) {
-                if (GridLayoutManager.player.equals("white")) {
+                if (GridLayoutManager.getPlayer().equals("white")) {
                     if (this.color == CellColor.WHITE && i < Way.length - 2 && i >= 0) {
                         if (Way[n = i + 1].color == CellColor.BLACK &&!Way[n].captured) {
                             GridLayoutManager.squares2[Way[n].x][Way[n].y].setBackground(Color.blue);
@@ -233,7 +303,7 @@ public class BoardCell extends JButton implements Movable,Capturable {
                         }
                     }
                 }
-                else if (GridLayoutManager.player.equals("black")) {
+                else if (GridLayoutManager.getPlayer().equals("black")) {
                     if (this.color == CellColor.BLACK && i < Way.length-2 && i >= 0) {
 
                         if (Way[n = i + 1].color == CellColor.WHITE && !Way[n].captured) {
@@ -292,7 +362,6 @@ public class BoardCell extends JButton implements Movable,Capturable {
                                             if (Way[n].color == CellColor.CLEAN && n >= 0) {
                                                 GridLayoutManager.squares2[Way[n].x][Way[n].y].setBackground(Color.blue);
                                                     return true;
-
                                             }
                                             n--;
                                         }
@@ -311,7 +380,7 @@ public class BoardCell extends JButton implements Movable,Capturable {
             int n = 0;
             int d = 0;
             if (this == Way[i]) {
-                if (GridLayoutManager.player.equals("white")) {
+                if (GridLayoutManager.getPlayer().equals("white")) {
                     if (this.color == CellColor.WHITE && i < Way.length - 2 && i >= 0) {
                         if (Way[n = i + 1].color == CellColor.BLACK &&!Way[n].captured) {
                             d = n;
@@ -399,7 +468,7 @@ public class BoardCell extends JButton implements Movable,Capturable {
                         }
                     }
                 }
-                else if (GridLayoutManager.player.equals("black")) {
+                else if (GridLayoutManager.getPlayer().equals("black")) {
                     if (this.color == CellColor.BLACK && i < Way.length-2 && i >= 0) {
                         if (Way[n = i + 1].color == CellColor.WHITE && !Way[n].captured) {
                             d = n;
@@ -509,7 +578,7 @@ public class BoardCell extends JButton implements Movable,Capturable {
     public boolean tryCaptureInner(BoardCell[] Way){
         for(int i=0; i<Way.length;i++){
             if(this==Way[i]){
-                if(GridLayoutManager.player.equals("white")) {
+                if(GridLayoutManager.getPlayer().equals("white")) {
                     if(i<Way.length-2 && i>=0) {
                         if (this.color == CellColor.WHITE && Way[i + 1].color == CellColor.BLACK
                                 && Way[i + 2].color == CellColor.CLEAN) {
@@ -529,7 +598,7 @@ public class BoardCell extends JButton implements Movable,Capturable {
                         }
                     }
                 }
-                if(Objects.equals(GridLayoutManager.player, "black")) {
+                if(Objects.equals(GridLayoutManager.getPlayer(), "black")) {
                     if(i<Way.length-2 && i>=0) {
                         if (this.color == CellColor.BLACK && Way[i + 1].color == CellColor.WHITE
                                 && Way[i + 2].color == CellColor.CLEAN) {
@@ -556,7 +625,7 @@ public class BoardCell extends JButton implements Movable,Capturable {
     public boolean CaptureInner(BoardCell[] Way, int a, int b){
         for(int i=0; i<Way.length;i++){
             if(this==Way[i]){
-                if(GridLayoutManager.player.equals("white")) {
+                if(GridLayoutManager.getPlayer().equals("white")) {
                     if(i<=Way.length-2 && i>=0) {
                         if (this.color == CellColor.WHITE && (Way[i + 1].color == CellColor.BLACK && !Way[i + 1].captured)
                                 && Way[i + 2].color == CellColor.CLEAN) {
@@ -582,7 +651,7 @@ public class BoardCell extends JButton implements Movable,Capturable {
                         }
                     }
                 }
-                if(GridLayoutManager.player.equals("black")) {
+                if(GridLayoutManager.getPlayer().equals("black")) {
                     if(i<=Way.length-2 && i>=0) {
                         if (this.color == CellColor.BLACK && (Way[i + 1].color == CellColor.WHITE&&!Way[i + 1].captured)
                                 && Way[i + 2].color == CellColor.CLEAN) {
@@ -630,114 +699,114 @@ public class BoardCell extends JButton implements Movable,Capturable {
     public boolean tryCapture(){
         if(this.queen){
             if (this.eightWay) {
-                if (this.tryCaptureInnerQueen(BoardArray.EightWay)) {
+                if (this.tryCaptureInnerQueen(BoardArray.getEightWay())) {
                     return true;
                 }
             }
             if (this.sevenWayG1A7) {
-                if (this.tryCaptureInnerQueen(BoardArray.SevenWayG1A7)) {
+                if (this.tryCaptureInnerQueen(BoardArray.getSevenWayG1A7())) {
                     return true;
                 }
             }
             if (this.sevenWayH2B8) {
-                if (this.tryCaptureInnerQueen(BoardArray.SevenWayH2B8)) {
+                if (this.tryCaptureInnerQueen(BoardArray.getSevenWayH2B8())) {
                     return true;
                 }
             }
             if (this.sixWayC1H6) {
-                if (this.tryCaptureInnerQueen(BoardArray.SixWayC1H6)) {
+                if (this.tryCaptureInnerQueen(BoardArray.getSixWayC1H6())) {
                     return true;
                 }
             }
             if (this.sixWayA3F8) {
-                if (this.tryCaptureInnerQueen(BoardArray.SixWayA3F8)) {
+                if (this.tryCaptureInnerQueen(BoardArray.getSixWayA3F8())) {
                     return true;
                 }
             }
             if (this.threeWayC1A3) {
-                if (this.tryCaptureInnerQueen(BoardArray.ThreeWayC1A3)) {
+                if (this.tryCaptureInnerQueen(BoardArray.getThreeWayC1A3())) {
                     return true;
                 }
             }
             if (this.threeWayH6F8) {
-                if (this.tryCaptureInnerQueen(BoardArray.ThreeWayH6F8)) {
+                if (this.tryCaptureInnerQueen(BoardArray.getThreeWayH6F8())) {
                     return true;
                 }
             }
             if (this.fiveWayH4D8) {
-                if (this.tryCaptureInnerQueen(BoardArray.FiveWayH4D8)) {
+                if (this.tryCaptureInnerQueen(BoardArray.getFiveWayH4D8())) {
                     return true;
                 }
             }
             if (this.fiveWayE1A5) {
-                if (this.tryCaptureInnerQueen(BoardArray.FiveWayE1A5)) {
+                if (this.tryCaptureInnerQueen(BoardArray.getFiveWayE1A5())) {
                     return true;
                 }
             }
             if (this.fourWayA5D8) {
-                if (this.tryCaptureInnerQueen(BoardArray.FourWayA5D8)) {
+                if (this.tryCaptureInnerQueen(BoardArray.getFourWayA5D8())) {
                     return true;
                 }
             }
             if (this.fourWayE1H4) {
-                if (this.tryCaptureInnerQueen(BoardArray.FourWayE1H4)) {
+                if (this.tryCaptureInnerQueen(BoardArray.getFourWayE1H4())) {
                     return true;
                 }
             }
         }
         else
             if (this.eightWay) {
-                if (this.tryCaptureInner(BoardArray.EightWay)) {
+                if (this.tryCaptureInner(BoardArray.getEightWay())) {
                     return true;
                 }
             }
             if (this.sevenWayG1A7) {
-                if (this.tryCaptureInner(BoardArray.SevenWayG1A7)) {
+                if (this.tryCaptureInner(BoardArray.getSevenWayG1A7())) {
                     return true;
                 }
             }
             if (this.sevenWayH2B8) {
-                if (this.tryCaptureInner(BoardArray.SevenWayH2B8)) {
+                if (this.tryCaptureInner(BoardArray.getSevenWayH2B8())) {
                     return true;
                 }
             }
             if (this.sixWayC1H6) {
-                if (this.tryCaptureInner(BoardArray.SixWayC1H6)) {
+                if (this.tryCaptureInner(BoardArray.getSixWayC1H6())) {
                     return true;
                 }
             }
             if (this.sixWayA3F8) {
-                if (this.tryCaptureInner(BoardArray.SixWayA3F8)) {
+                if (this.tryCaptureInner(BoardArray.getSixWayA3F8())) {
                     return true;
                 }
             }
             if (this.threeWayC1A3) {
-                if (this.tryCaptureInner(BoardArray.ThreeWayC1A3)) {
+                if (this.tryCaptureInner(BoardArray.getThreeWayC1A3())) {
                     return true;
                 }
             }
             if (this.threeWayH6F8) {
-                if (this.tryCaptureInner(BoardArray.ThreeWayH6F8)) {
+                if (this.tryCaptureInner(BoardArray.getThreeWayH6F8())) {
                     return true;
                 }
             }
             if (this.fiveWayH4D8) {
-                if (this.tryCaptureInner(BoardArray.FiveWayH4D8)) {
+                if (this.tryCaptureInner(BoardArray.getFiveWayH4D8())) {
                     return true;
                 }
             }
             if (this.fiveWayE1A5) {
-                if (this.tryCaptureInner(BoardArray.FiveWayE1A5)) {
+                if (this.tryCaptureInner(BoardArray.getFiveWayE1A5())) {
                     return true;
                 }
             }
             if (this.fourWayA5D8) {
-                if (this.tryCaptureInner(BoardArray.FourWayA5D8)) {
+                if (this.tryCaptureInner(BoardArray.getFourWayA5D8())) {
                     return true;
                 }
             }
             if (this.fourWayE1H4) {
-                if (this.tryCaptureInner(BoardArray.FourWayE1H4)) {
+                if (this.tryCaptureInner(BoardArray.getFourWayE1H4())) {
                     return true;
                 }
             }
@@ -748,114 +817,114 @@ public class BoardCell extends JButton implements Movable,Capturable {
     public boolean Capture(int a, int b) {
         if(this.queen) {
             if (this.eightWay) {
-                if (this.CaptureInnerQueen(BoardArray.EightWay, a, b)) {
+                if (this.CaptureInnerQueen(BoardArray.getEightWay(), a, b)) {
                     return true;
                 }
             }
             if (this.sevenWayG1A7) {
-                if (this.CaptureInnerQueen(BoardArray.SevenWayG1A7, a, b)) {
+                if (this.CaptureInnerQueen(BoardArray.getSevenWayG1A7(), a, b)) {
                     return true;
                 }
             }
             if (this.sevenWayH2B8) {
-                if (this.CaptureInnerQueen(BoardArray.SevenWayH2B8, a, b)) {
+                if (this.CaptureInnerQueen(BoardArray.getSevenWayH2B8(), a, b)) {
                     return true;
                 }
             }
             if (this.sixWayC1H6) {
-                if (this.CaptureInnerQueen(BoardArray.SixWayC1H6, a, b)) {
+                if (this.CaptureInnerQueen(BoardArray.getSixWayC1H6(), a, b)) {
                     return true;
                 }
             }
             if (this.sixWayA3F8) {
-                if (this.CaptureInnerQueen(BoardArray.SixWayA3F8, a, b)) {
+                if (this.CaptureInnerQueen(BoardArray.getSixWayA3F8(), a, b)) {
                     return true;
                 }
             }
             if (this.threeWayC1A3) {
-                if (this.CaptureInnerQueen(BoardArray.ThreeWayC1A3, a, b)) {
+                if (this.CaptureInnerQueen(BoardArray.getThreeWayC1A3(), a, b)) {
                     return true;
                 }
             }
             if (this.threeWayH6F8) {
-                if (this.CaptureInnerQueen(BoardArray.ThreeWayH6F8, a, b)) {
+                if (this.CaptureInnerQueen(BoardArray.getThreeWayH6F8(), a, b)) {
                     return true;
                 }
             }
             if (this.fiveWayH4D8) {
-                if (this.CaptureInnerQueen(BoardArray.FiveWayH4D8, a, b)) {
+                if (this.CaptureInnerQueen(BoardArray.getFiveWayH4D8(), a, b)) {
                     return true;
                 }
             }
             if (this.fiveWayE1A5) {
-                if (this.CaptureInnerQueen(BoardArray.FiveWayE1A5, a, b)) {
+                if (this.CaptureInnerQueen(BoardArray.getFiveWayE1A5(), a, b)) {
                     return true;
                 }
             }
             if (this.fourWayA5D8) {
-                if (this.CaptureInnerQueen(BoardArray.FourWayA5D8, a, b)) {
+                if (this.CaptureInnerQueen(BoardArray.getFourWayA5D8(), a, b)) {
                     return true;
                 }
             }
             if (this.fourWayE1H4) {
-                if (this.CaptureInnerQueen(BoardArray.FourWayE1H4, a, b)) {
+                if (this.CaptureInnerQueen(BoardArray.getFourWayE1H4(), a, b)) {
                     return true;
                 }
             }
         }
         else {
             if (this.eightWay) {
-                if (this.CaptureInner(BoardArray.EightWay, a, b)) {
+                if (this.CaptureInner(BoardArray.getEightWay(), a, b)) {
                     return true;
                 }
             }
             if (this.sevenWayG1A7) {
-                if (this.CaptureInner(BoardArray.SevenWayG1A7, a, b)) {
+                if (this.CaptureInner(BoardArray.getSevenWayG1A7(), a, b)) {
                     return true;
                 }
             }
             if (this.sevenWayH2B8) {
-                if (this.CaptureInner(BoardArray.SevenWayH2B8, a, b)) {
+                if (this.CaptureInner(BoardArray.getSevenWayH2B8(), a, b)) {
                     return true;
                 }
             }
             if (this.sixWayC1H6) {
-                if (this.CaptureInner(BoardArray.SixWayC1H6, a, b)) {
+                if (this.CaptureInner(BoardArray.getSixWayC1H6(), a, b)) {
                     return true;
                 }
             }
             if (this.sixWayA3F8) {
-                if (this.CaptureInner(BoardArray.SixWayA3F8, a, b)) {
+                if (this.CaptureInner(BoardArray.getSixWayA3F8(), a, b)) {
                     return true;
                 }
             }
             if (this.threeWayC1A3) {
-                if (this.CaptureInner(BoardArray.ThreeWayC1A3, a, b)) {
+                if (this.CaptureInner(BoardArray.getThreeWayC1A3(), a, b)) {
                     return true;
                 }
             }
             if (this.threeWayH6F8) {
-                if (this.CaptureInner(BoardArray.ThreeWayH6F8, a, b)) {
+                if (this.CaptureInner(BoardArray.getThreeWayH6F8(), a, b)) {
                     return true;
                 }
             }
             if (this.fiveWayH4D8) {
-                if (this.CaptureInner(BoardArray.FiveWayH4D8, a, b)) {
+                if (this.CaptureInner(BoardArray.getFiveWayH4D8(), a, b)) {
                     return true;
                 }
             }
             if (this.fiveWayE1A5) {
-                if (this.CaptureInner(BoardArray.FiveWayE1A5, a, b)) {
+                if (this.CaptureInner(BoardArray.getFiveWayE1A5(), a, b)) {
                     return true;
                 }
             }
             if (this.fourWayA5D8) {
-                if (this.CaptureInner(BoardArray.FourWayA5D8, a, b)) {
+                if (this.CaptureInner(BoardArray.getFourWayA5D8(), a, b)) {
                     return true;
                 }
             }
             if (this.fourWayE1H4) {
-                if (this.CaptureInner(BoardArray.FourWayE1H4, a, b)) {
+                if (this.CaptureInner(BoardArray.getFourWayE1H4(), a, b)) {
                     return true;
                 }
             }
@@ -865,72 +934,72 @@ public class BoardCell extends JButton implements Movable,Capturable {
     }
     public void addWay(boolean border){
         if (this.eightWay){
-            addWayInner(BoardArray.EightWay, border);
+            addWayInner(BoardArray.getEightWay(), border);
         }
         if (this.sevenWayG1A7) {
-            addWayInner(BoardArray.SevenWayG1A7, border);
+            addWayInner(BoardArray.getSevenWayG1A7(), border);
         }
         if (this.sevenWayH2B8) {
-            addWayInner(BoardArray.SevenWayH2B8, border);
+            addWayInner(BoardArray.getSevenWayH2B8(), border);
         }
         if (this.sixWayC1H6) {
-            addWayInner(BoardArray.SixWayC1H6, border);
+            addWayInner(BoardArray.getSixWayC1H6(), border);
         }
         if (this.sixWayA3F8) {
-            addWayInner(BoardArray.SixWayA3F8, border);
+            addWayInner(BoardArray.getSixWayA3F8(), border);
         }
         if (this.threeWayC1A3) {
-            addWayInner(BoardArray.ThreeWayC1A3, border);
+            addWayInner(BoardArray.getThreeWayC1A3(), border);
         }
         if (this.threeWayH6F8) {
-            addWayInner(BoardArray.ThreeWayH6F8, border);
+            addWayInner(BoardArray.getThreeWayH6F8(), border);
         }
         if (this.fiveWayH4D8) {
-            addWayInner(BoardArray.FiveWayH4D8, border);
+            addWayInner(BoardArray.getFiveWayH4D8(), border);
         }
         if (this.fiveWayE1A5){
-            addWayInner(BoardArray.FiveWayE1A5,border);
+            addWayInner(BoardArray.getFiveWayE1A5(),border);
         }
         if (this.fourWayA5D8) {
-            addWayInner(BoardArray.FourWayA5D8,border);
+            addWayInner(BoardArray.getFourWayA5D8(),border);
         }
         if (this.fourWayE1H4) {
-            addWayInner(BoardArray.FourWayE1H4,border);
+            addWayInner(BoardArray.getFourWayE1H4(),border);
         }
     }
     public void addWay(CellColor color){
         if (this.eightWay){
-            addWayInner(BoardArray.EightWay, color);
+            addWayInner(BoardArray.getEightWay(), color);
         }
         if (this.sevenWayG1A7) {
-            addWayInner(BoardArray.SevenWayG1A7, color);
+            addWayInner(BoardArray.getSevenWayG1A7(), color);
         }
         if (this.sevenWayH2B8) {
-            addWayInner(BoardArray.SevenWayH2B8, color);
+            addWayInner(BoardArray.getSevenWayH2B8(), color);
         }
         if (this.sixWayC1H6) {
-            addWayInner(BoardArray.SixWayC1H6, color);
+            addWayInner(BoardArray.getSixWayC1H6(), color);
         }
         if (this.sixWayA3F8) {
-            addWayInner(BoardArray.SixWayA3F8, color);
+            addWayInner(BoardArray.getSixWayA3F8(), color);
         }
         if (this.threeWayC1A3) {
-            addWayInner(BoardArray.ThreeWayC1A3, color);
+            addWayInner(BoardArray.getThreeWayC1A3(), color);
         }
         if (this.threeWayH6F8) {
-            addWayInner(BoardArray.ThreeWayH6F8, color);
+            addWayInner(BoardArray.getThreeWayH6F8(), color);
         }
         if (this.fiveWayH4D8) {
-            addWayInner(BoardArray.FiveWayH4D8, color);
+            addWayInner(BoardArray.getFiveWayH4D8(), color);
         }
         if (this.fiveWayE1A5){
-            addWayInner(BoardArray.FiveWayE1A5, color);
+            addWayInner(BoardArray.getFiveWayE1A5(), color);
         }
         if (this.fourWayA5D8) {
-            addWayInner(BoardArray.FourWayA5D8, color);
+            addWayInner(BoardArray.getFourWayA5D8(), color);
         }
         if (this.fourWayE1H4) {
-            addWayInner(BoardArray.FourWayE1H4, color);
+            addWayInner(BoardArray.getFourWayE1H4(), color);
         }
     }
 

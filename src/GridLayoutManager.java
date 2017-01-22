@@ -2,29 +2,28 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-    public class GridLayoutManager extends JFrame
+    class GridLayoutManager extends JFrame
     {
         static Container contents;
         //Components
-        public static JButton[][] squares2 = new JButton[8][8];
-        //Colors
-        static Color colorBlack = Color.BLACK; //Black square
-        static int one = 7;
-        static int two = 1;
-        static int row = 7;
-        static int col = 1;
-        static boolean attackInd = false; //false default
-        static boolean attack = false; //false default
-        static  String player = "white";
-        static String player2 = "black";
-        static String timeCurrent = "checkerWhite";
-        static String current = "checkerBlack";
-        static boolean queenTurn = false;
+        static JButton[][] squares2 = new JButton[8][8];
 
-        public static BoardCell[][] boardarray = new BoardCell[8][8];
+        private static int one = 7;
+        private static int two = 1;
+        private static int row = 7;
+        private static int col = 1;
+        private static boolean attackInd = false; //false default
+        private static boolean attack = false; //false default
+        private static String player = "white";
+        private static String player2 = "black";
+        private static String timeCurrent = "checkerWhite";
+        private static String current = "checkerBlack";
+        private static boolean queenTurn = false;
+
+        static BoardCell[][] boardarray = new BoardCell[8][8];
         //Current position
         //Upper left corner of board is(0,0).
-        public GridLayoutManager()
+        GridLayoutManager()
         {
             super("GUI GridLayout Manager - (click a valid square to move )");
             contents = getContentPane();
@@ -40,7 +39,7 @@ import java.io.IOException;
                     squares2[i][j].setBorder(BorderFactory.createCompoundBorder());
                     squares2[i][j].setOpaque(true);
                     if ((i + j) % 2 != 0) {
-                        squares2[i][j].setBackground(colorBlack);
+                        squares2[i][j].setBackground(Color.BLACK);
                     }
                     contents.add(squares2[i][j]);
                     squares2[i][j].addActionListener(buttonHandler);
@@ -83,6 +82,53 @@ import java.io.IOException;
             boardarray[7][4] = new BoardCell("e1",false, CellColor.BLACK, 7, 4, false, false, false,false,false,false,false,false,false,false,false,false,false);
             boardarray[7][6] = new BoardCell("g1",false, CellColor.BLACK, 7, 6, false, false, false,false,false,false,false,false,false,false,false,false,false);
         }
+        static void setCurrent(String a){
+            current=a;
+        }
+        static boolean getAttackInd(){
+            return attackInd;
+        }
+        static void setAttackInd(boolean a){
+            attackInd=a;
+        }
+        static boolean getAttack(){
+            return attack;
+        }
+        static void setAttack(boolean a){
+            attack=a;
+        }
+
+        /*boolean getQueenTurn(){
+            return queenTurn;
+        }*/
+        static void setQueenTurn(boolean turn){
+            queenTurn=turn;
+        }
+        static int getOne(){
+            return one;
+        }
+        static void setOne(int a){
+            one=a;
+        }
+        static int getTwo(){
+            return two;
+        }
+        static void setTwo(int a){
+            two=a;
+        }
+        /*static int getRow(){
+            return row;
+        }*/
+        static void setRow(int a){
+            row=a;
+        }
+        /*static int getCol(){
+            return col;
+        }*/
+        static void setCol(int a){
+            col=a;
+        }
+
         static String SwapPlayer(){
             String one,two;
             if(timeCurrent=="checkerWhite"){timeCurrent="checkerBlack";}
@@ -94,12 +140,15 @@ import java.io.IOException;
             player2 = one;
             return player;
         }
+        static String getPlayer(){
+            return player;
+        }
 
     static boolean isValidMove(int i, int j, int g, int h, boolean t) {
         int rowDelta;
         int colDelta;
         if (!t) {
-            if(boardarray[g][h].queen){
+            if(boardarray[g][h].getQueen()){
                 if(boardarray[g][h].walkingQueen(i,j)){return true;}
             }
             else {
@@ -112,7 +161,7 @@ import java.io.IOException;
                 }
             }
         } else if (t) {
-            if(boardarray[g][h].queen){
+            if(boardarray[g][h].getQueen()){
                 if(boardarray[g][h].walkingQueen(i,j)){return true;}
             }
             else {
@@ -129,81 +178,73 @@ import java.io.IOException;
     }
 
     static boolean isCheckerChosen(int i, int j) {
-        if (boardarray[i][j].color == CellColor.WHITE) {
+        if (boardarray[i][j].getCellColor() == CellColor.WHITE) {
             if (timeCurrent.equals("checkerWhite") && !attack) {
                 if(queenTurn){
-                    boardarray[one][two].queen=true;
-                    boardarray[row][col].queen=false;
+                    boardarray[one][two].setQueen(true);
+                    boardarray[row][col].setQueen(false);
                     queenTurn=false;
                     boardarray[one][two].change(CellColor.WHITE);
                     boardarray[row][col].change(CellColor.CLEAN);
                     boardarray[one][two].choseChecker(false);
-                    //squares2[one][two].setBackground(colorBlack);
                 }
                     else{
                     boardarray[one][two].change(CellColor.WHITE);
                     boardarray[row][col].change(CellColor.CLEAN);
                     boardarray[one][two].choseChecker(false);
-                //squares2[one][two].setBackground(colorBlack);
                     }
             }
             if (timeCurrent.equals("checkerWhite") && attack) {
                 if(queenTurn){
-                    boardarray[one][two].queen=true;
-                    boardarray[row][col].queen=false;
+                    boardarray[one][two].setQueen(true);
+                    boardarray[row][col].setQueen(false);
                     queenTurn=false;
                     boardarray[one][two].choseChecker(true);
                     boardarray[row][col].choseChecker(false);
                     boardarray[one][two].choseChecker(false);
-                    //squares2[one][two].setBackground(colorBlack);
                 }
                 else{
                     boardarray[one][two].choseChecker(true);
                     boardarray[row][col].choseChecker(false);
                     boardarray[one][two].choseChecker(false);
-                    //squares2[one][two].setBackground(colorBlack);
                 }
             }
-        } else if (boardarray[i][j].color == CellColor.BLACK ) {
+        } else if (boardarray[i][j].getCellColor() == CellColor.BLACK ) {
             if (timeCurrent.equals("checkerBlack")&& !attack) {
                 if(queenTurn){
-                    boardarray[one][two].queen=true;
-                    boardarray[row][col].queen=false;
+                    boardarray[one][two].setQueen(true);
+                    boardarray[row][col].setQueen(false);
                     queenTurn=false;
                     boardarray[one][two].change(CellColor.BLACK);
                     boardarray[row][col].change(CellColor.CLEAN);
                     boardarray[one][two].choseChecker(false);
-                    //squares2[one][two].setBackground(colorBlack);
                 }
                 else{
                     boardarray[one][two].change(CellColor.BLACK);
                     boardarray[row][col].change(CellColor.CLEAN);
                     boardarray[one][two].choseChecker(false);
-                //squares2[one][two].setBackground(colorBlack);
                     }
             }
             if (timeCurrent.equals("checkerBlack") && attack) {
                 if(queenTurn){
-                    boardarray[one][two].queen=true;
-                    boardarray[row][col].queen=false;
+                    boardarray[one][two].setQueen(true);
+                    boardarray[row][col].setQueen(false);
                     queenTurn=false;
                     boardarray[one][two].choseChecker(true);
                     boardarray[row][col].choseChecker(false);
                     boardarray[one][two].choseChecker(false);
-                    //squares2[one][two].setBackground(colorBlack);
                 }
                 else{
                     boardarray[one][two].choseChecker(true);
                     boardarray[row][col].choseChecker(false);
                     boardarray[one][two].choseChecker(false);
-                    //squares2[one][two].setBackground(colorBlack);
                 }
             }
         }
 
         boardarray[i][j].choseChecker(true);
 
-        if (boardarray[i][j].color == CellColor.WHITE ) {
+        if (boardarray[i][j].getCellColor() == CellColor.WHITE ) {
             current = "checkerWhite";
             return true;
         }
@@ -217,39 +258,39 @@ import java.io.IOException;
 
 
     static void processClick(int i, int j, int g, int h) throws IOException {
-        if (boardarray[g][h].border && boardarray[i][j].color == CellColor.WHITE && !attack ||
+        if (boardarray[g][h].getCellBorder() && boardarray[i][j].getCellColor() == CellColor.WHITE && !attack ||
                 squares2[i][j].getBackground().equals(Color.cyan) && timeCurrent.equals("checkerWhite") && !attack) {
             if(queenTurn){
-                boardarray[g][h].queen=true;
-                boardarray[row][col].queen=false;
+                boardarray[g][h].setQueen(true);
+                boardarray[row][col].setQueen(false);
                 queenTurn=false;
                 boardarray[g][h].change(CellColor.WHITE);
-                squares2[g][h].setBackground(colorBlack);
+                squares2[g][h].setBackground(Color.BLACK);
                 boardarray[row][col].change(CellColor.CLEAN);
                 boardarray[row][col].choseChecker(false);
                 boardarray[i][j].choseChecker(true);
             }
             else{
             boardarray[g][h].change(CellColor.WHITE);
-            squares2[g][h].setBackground(colorBlack);
+            squares2[g][h].setBackground(Color.BLACK);
             boardarray[row][col].change(CellColor.CLEAN);
             boardarray[row][col].choseChecker(false);
             boardarray[i][j].choseChecker(true);}
-        } else if (boardarray[g][h].border && boardarray[i][j].color == CellColor.BLACK && !attack ||
+        } else if (boardarray[g][h].getCellBorder() && boardarray[i][j].getCellColor() == CellColor.BLACK && !attack ||
                 squares2[i][j].getBackground().equals(Color.cyan)&& timeCurrent.equals("checkerBlack") && !attack) {
             if(queenTurn){
-                boardarray[g][h].queen=true;
-                boardarray[row][col].queen=false;
+                boardarray[g][h].setQueen(true);
+                boardarray[row][col].setQueen(false);
                 queenTurn=false;
                 boardarray[g][h].change(CellColor.BLACK);
-                squares2[g][h].setBackground(colorBlack);
+                squares2[g][h].setBackground(Color.BLACK);
                 boardarray[row][col].change(CellColor.CLEAN);
                 boardarray[row][col].choseChecker(false);
                 boardarray[i][j].choseChecker(true);
             }
             else{
             boardarray[g][h].change(CellColor.BLACK);
-            squares2[g][h].setBackground(colorBlack);
+            squares2[g][h].setBackground(Color.BLACK);
             boardarray[row][col].change(CellColor.CLEAN);
             boardarray[row][col].choseChecker(false);
             boardarray[i][j].choseChecker(true);}
@@ -257,18 +298,18 @@ import java.io.IOException;
         else if (isCheckerChosen(g, h)) {
 
                 if(attackInd && player.equals("white") || attack && player.equals("white")) {
-                    if(boardarray[g][h].queen) {
+                    if(boardarray[g][h].getQueen()) {
                         if (!boardarray[g][h].Capture(i, j)) {
                             return;
                         }
-                        boardarray[g][h].queen = false;
+                        boardarray[g][h].setQueen(false);
                         boardarray[g][h].change(CellColor.CLEAN);
-                        boardarray[row][col].queen = false;
+                        boardarray[row][col].setQueen(false);
                         boardarray[row][col].change(CellColor.CLEAN);
                         boardarray[row][col].choseChecker(false);
 
                         attackInd = false;
-                        boardarray[i][j].queen = true;
+                        boardarray[i][j].setQueen(true);
                         boardarray[i][j].change(CellColor.WHITE);
                         boardarray[i][j].choseChecker(true);
                         row = i;
@@ -282,15 +323,15 @@ import java.io.IOException;
                     boardarray[row][col].choseChecker(false);
                     BoardArray.DeleteCaptured(i,j,g,h);
                     attackInd=false;
-                    if(boardarray[i][j].color==CellColor.CLEAN && i==7){
-                        boardarray[i][j].queen=true;
+                    if(boardarray[i][j].getCellColor()==CellColor.CLEAN && i==7){
+                        boardarray[i][j].setQueen(true);
                     }
                     boardarray[i][j].change(CellColor.WHITE);
                     boardarray[i][j].choseChecker(true);
                     row = i;
                     col = j;
         }
-            if(boardarray[i][j].color==CellColor.CLEAN && boardarray[g][h].color==CellColor.CLEAN && boardarray[g][h].border){return;}
+            if(boardarray[i][j].getCellColor()==CellColor.CLEAN && boardarray[g][h].getCellColor()==CellColor.CLEAN && boardarray[g][h].getCellBorder()){return;}
             else{
                 if (!isValidMove(i, j, g, h, true)) {
                     return;
@@ -305,18 +346,18 @@ import java.io.IOException;
             col = j;}
         } else if (!isCheckerChosen(g, h)) {
             if(attackInd && player.equals("black") || attack && player.equals("black")) {
-                if(boardarray[g][h].queen) {
+                if(boardarray[g][h].getQueen()) {
                     if (!boardarray[g][h].Capture(i, j)) {
                         return;
                     }
-                    boardarray[g][h].queen = false;
+                    boardarray[g][h].setQueen(false);
                     boardarray[g][h].change(CellColor.CLEAN);
-                    boardarray[row][col].queen = false;
+                    boardarray[row][col].setQueen(false);
                     boardarray[row][col].change(CellColor.CLEAN);
                     boardarray[row][col].choseChecker(false);
 
                     attackInd = false;
-                    boardarray[i][j].queen = true;
+                    boardarray[i][j].setQueen(true);
                     boardarray[i][j].change(CellColor.BLACK);
                     boardarray[i][j].choseChecker(true);
                     row = i;
@@ -330,15 +371,15 @@ import java.io.IOException;
                 boardarray[row][col].choseChecker(false);
                 BoardArray.DeleteCaptured(i,j,g,h);
                 attackInd=false;
-                if(boardarray[i][j].color==CellColor.CLEAN && i==0){
-                    boardarray[i][j].queen=true;
+                if(boardarray[i][j].getCellColor()==CellColor.CLEAN && i==0){
+                    boardarray[i][j].setQueen(true);
                 }
                 boardarray[i][j].change(CellColor.BLACK);
                 boardarray[i][j].choseChecker(true);
                 row = i;
                 col = j;
         }
-            if(boardarray[i][j].color==CellColor.CLEAN && boardarray[g][h].color==CellColor.CLEAN && boardarray[g][h].border){return;}
+            if(boardarray[i][j].getCellColor()==CellColor.CLEAN && boardarray[g][h].getCellColor()==CellColor.CLEAN && boardarray[g][h].getCellBorder()){return;}
             else{
                 if (!isValidMove(i, j, g, h, false)) {
                     return;

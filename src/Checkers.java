@@ -2,12 +2,12 @@
 import java.awt.*;
 import javax.swing.*;
 public class Checkers extends JFrame {
-    static String first = "";
-    static String second = "";
-    static int whiteCount = 0;
-    static int blackCount = 0;
-    static JButton btn = new JButton("сделать ход");
-    static JLabel label = new JLabel("ШАШКИ");
+     static String first = "";
+     static String second = "";
+     static int whiteCount = 0;
+     static int blackCount = 0;
+     static JButton btn = new JButton("сделать ход");
+     static JLabel label = new JLabel("ШАШКИ");
 
         public static void main(String[] args) {
             JFrame frame = new JFrame("Checkers v1.0");

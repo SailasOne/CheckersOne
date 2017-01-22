@@ -2,24 +2,24 @@
 
 import javax.swing.*;
 
-public class BoardArray extends JFrame
+class BoardArray extends JFrame
 {
-    public static BoardCell[] EightWay = new BoardCell[8]; // a1, b2, c3, d4, e5, f6, g7, h8
+    private static BoardCell[] EightWay = new BoardCell[8]; // a1, b2, c3, d4, e5, f6, g7, h8
 
-    public static BoardCell[] SevenWayG1A7 = new BoardCell[7]; // g1, f2, e3, d4, c5, b6, a7
-    public static BoardCell[] SevenWayH2B8 = new BoardCell[7]; // h2, g3, f4, e5, d6, c7, b8
+    private static BoardCell[] SevenWayG1A7 = new BoardCell[7]; // g1, f2, e3, d4, c5, b6, a7
+    private static BoardCell[] SevenWayH2B8 = new BoardCell[7]; // h2, g3, f4, e5, d6, c7, b8
 
-    public static BoardCell[] SixWayC1H6 = new BoardCell[6]; // c1, d2, e3, f4, g5, h6
-    public static BoardCell[] SixWayA3F8 = new BoardCell[6]; // a3, b4, c5, d6, e7, f8
-    public static BoardCell[] ThreeWayC1A3 = new BoardCell[3]; // c1, b2, a3
-    public static BoardCell[] ThreeWayH6F8 = new BoardCell[3]; // h6, g7, f8
+    private static BoardCell[] SixWayC1H6 = new BoardCell[6]; // c1, d2, e3, f4, g5, h6
+    private static BoardCell[] SixWayA3F8 = new BoardCell[6]; // a3, b4, c5, d6, e7, f8
+    private static BoardCell[] ThreeWayC1A3 = new BoardCell[3]; // c1, b2, a3
+    private static BoardCell[] ThreeWayH6F8 = new BoardCell[3]; // h6, g7, f8
 
-    public static BoardCell[] FiveWayH4D8 = new BoardCell[5]; // h4, g5, f6, e7, d8
-    public static BoardCell[] FiveWayE1A5 = new BoardCell[5]; // e1, d2, c3, b4, a5
-    public static BoardCell[] FourWayA5D8 = new BoardCell[4]; // a5, b6, c7, d8
-    public static BoardCell[] FourWayE1H4 = new BoardCell[4]; // e1, f2, g3, h4
+    private static BoardCell[] FiveWayH4D8 = new BoardCell[5]; // h4, g5, f6, e7, d8
+    private static BoardCell[] FiveWayE1A5 = new BoardCell[5]; // e1, d2, c3, b4, a5
+    private static BoardCell[] FourWayA5D8 = new BoardCell[4]; // a5, b6, c7, d8
+    private static BoardCell[] FourWayE1H4 = new BoardCell[4]; // e1, f2, g3, h4
 
-    public BoardArray() {
+    BoardArray() {
         /*EightWay[0][7] = new BoardCell("h8", CellColor.WHITE, 0, 7, false,false,    true,false,false,false,false,false,false,false,false,false,false);
         EightWay[1][6] = new BoardCell("g7", CellColor.WHITE, 1, 6, false,false,    true,false,false,false,false,false,true,false,false,false,false);
         EightWay[2][5] = new BoardCell("f6", CellColor.WHITE, 2, 5, false,false,    true,false,false,false,false,false,false,true,false,false,false);
@@ -30,7 +30,7 @@ public class BoardArray extends JFrame
         EightWay[7][0] = new BoardCell("a1", CellColor.BLACK, 7, 0, false,false,    true,false,false,false,false,false,false,false,false,false,false);*/
         // a1, b2, c3, d4, e5, f6, g7, h8
         for (int i = 7,j=0,a=0; i>=0&&j<=7;i--,j++,a++) {
-            GridLayoutManager.boardarray[i][j].eightWay=true;
+            GridLayoutManager.boardarray[i][j].setEightWay(true);
             EightWay[a] = GridLayoutManager.boardarray[i][j];
         }
         /*SevenWayG1A7[7][6] = new BoardCell("g1", CellColor.BLACK, 7, 6, false,false,    false,true,false,false,false,false,false,false,false,false,false);
@@ -42,7 +42,7 @@ public class BoardArray extends JFrame
         SevenWayG1A7[1][0] = new BoardCell("a7", CellColor.WHITE, 1, 0, false,false,    false,true,false,false,false,false,false,false,false,false,false);*/
         // g1, f2, e3, d4, c5, b6, a7
         for(int i=7,j=6,a=0;i>=1&&j>=0;i--,j--,a++){
-            GridLayoutManager.boardarray[i][j].sevenWayG1A7=true;
+            GridLayoutManager.boardarray[i][j].setSevenWayG1A7(true);
             SevenWayG1A7[a]=GridLayoutManager.boardarray[i][j];
         }
         /*SevenWayH2B8[6][7] = new BoardCell("h2", CellColor.BLACK, 6, 7, false,false,    false,false,true,false,false,false,false,false,false,false,false);
@@ -54,7 +54,7 @@ public class BoardArray extends JFrame
         SevenWayH2B8[0][1] = new BoardCell("b8", CellColor.WHITE, 0, 1, false,false,    false,false,true,false,false,false,false,false,false,false,false);*/
         // h2, g3, f4, e5, d6, c7, b8
         for (int i=6,j=7,a=0;i>=0&&j>=1;i--,j--,a++){
-            GridLayoutManager.boardarray[i][j].sevenWayH2B8=true;
+            GridLayoutManager.boardarray[i][j].setSevenWayH2B8(true);
             SevenWayH2B8[a]=GridLayoutManager.boardarray[i][j];
         }
         /*SixWayC1H6[7][2] = new BoardCell("c1", CellColor.BLACK, 7, 2, false,false,  false,false,false,true,false,false,false,false,false,false,false);
@@ -65,7 +65,7 @@ public class BoardArray extends JFrame
         SixWayC1H6[2][7] = new BoardCell("h6", CellColor.WHITE, 2, 7, false,false,  false,false,false,true,false,false,false,false,false,false,false);*/
         // c1, d2, e3, f4, g5, h6
         for(int i=7,j=2,a=0;i>=2&&j<=7;i--,j++,a++){
-            GridLayoutManager.boardarray[i][j].sixWayC1H6=true;
+            GridLayoutManager.boardarray[i][j].setSixWayC1H6(true);
             SixWayC1H6[a]=GridLayoutManager.boardarray[i][j];
         }
         /*SixWayA3F8[5][0] = new BoardCell("a3", CellColor.BLACK, 5, 0, false,false,  false,false,false,false,true,false,false,false,false,false,false);
@@ -76,7 +76,7 @@ public class BoardArray extends JFrame
         SixWayA3F8[0][5] = new BoardCell("f8", CellColor.WHITE, 0, 5, false,false,  false,false,false,false,true,false,false,false,false,false,false);*/
         // a3, b4, c5, d6, e7, f8
         for (int i=5,j=0,a=0;i>=0&&j<=5;i--,j++,a++){
-            GridLayoutManager.boardarray[i][j].sixWayA3F8=true;
+            GridLayoutManager.boardarray[i][j].setSixWayA3F8(true);
             SixWayA3F8[a]=GridLayoutManager.boardarray[i][j];
         }
         /*ThreeWayC1A3[7][2] = new BoardCell("c1", CellColor.BLACK, 7, 2, false,false,    false,false,false,false,false,true,false,false,false,false,false);
@@ -84,7 +84,7 @@ public class BoardArray extends JFrame
         ThreeWayC1A3[5][0] = new BoardCell("a3", CellColor.BLACK, 5, 0, false,false,    false,false,false,false,false,true,false,false,false,false,false);*/
         // c1, b2, a3
         for(int i=7,j=2,a=0;i>=5&&j>=0;i--,j--,a++){
-            GridLayoutManager.boardarray[i][j].threeWayC1A3=true;
+            GridLayoutManager.boardarray[i][j].setThreeWayC1A3(true);
             ThreeWayC1A3[a]=GridLayoutManager.boardarray[i][j];
         }
         /*ThreeWayH6F8[2][7] = new BoardCell("h6", CellColor.WHITE, 2, 7, false,false,    false,false,false,false,false,false,true,false,false,false,false);
@@ -92,7 +92,7 @@ public class BoardArray extends JFrame
         ThreeWayH6F8[0][5] = new BoardCell("f8", CellColor.WHITE, 0, 5, false,false,    false,false,false,false,false,false,true,false,false,false,false);*/
         // h6, g7, f8
         for (int i=2,j=7,a=0;i>=0&&j>=5;i--,j--,a++){
-            GridLayoutManager.boardarray[i][j].threeWayH6F8=true;
+            GridLayoutManager.boardarray[i][j].setThreeWayH6F8(true);
             ThreeWayH6F8[a]=GridLayoutManager.boardarray[i][j];
         }
         /*FiveWayH4D8[4][7] = new BoardCell("h4", CellColor.CLEAN, 4, 7, false,false, false,false,false,false,false,false,false,true,false,false,false);
@@ -102,7 +102,7 @@ public class BoardArray extends JFrame
         FiveWayH4D8[0][3] = new BoardCell("d8", CellColor.WHITE, 0, 3, false,false, false,false,false,false,false,false,false,true,false,false,false);*/
         // h4, g5, f6, e7, d8
         for (int i=4,j=7,a=0; i>=0&&j>=3;i--,j--,a++){
-            GridLayoutManager.boardarray[i][j].fiveWayH4D8=true;
+            GridLayoutManager.boardarray[i][j].setFiveWayH4D8(true);
             FiveWayH4D8[a]=GridLayoutManager.boardarray[i][j];
         }
         /*FiveWayE1A5[7][4] = new BoardCell("e1", CellColor.BLACK, 7, 4, false,false, false,false,false,false,false,false,false,false,true,false,false);
@@ -112,7 +112,7 @@ public class BoardArray extends JFrame
         FiveWayE1A5[3][0] = new BoardCell("a5", CellColor.CLEAN, 3, 0, false,false, false,false,false,false,false,false,false,false,true,false,false);*/
         // e1, d2, c3, b4, a5
         for (int i=7,j=4,a=0; i>=3&&j>=0;i--,j--,a++){
-            GridLayoutManager.boardarray[i][j].fiveWayE1A5=true;
+            GridLayoutManager.boardarray[i][j].setFiveWayE1A5(true);
             FiveWayE1A5[a]=GridLayoutManager.boardarray[i][j];
         }
         /*FourWayA5D8[3][0] = new BoardCell("a5", CellColor.CLEAN, 3, 0, false,false, false,false,false,false,false,false,false,false,false,true,false);
@@ -121,7 +121,7 @@ public class BoardArray extends JFrame
         FourWayA5D8[0][3] = new BoardCell("d8", CellColor.WHITE, 0, 3, false,false, false,false,false,false,false,false,false,false,false,true,false);*/
         // a5, b6, c7, d8
         for (int i=3,j=0,a=0;i>=0&&j<=3;i--,j++,a++){
-            GridLayoutManager.boardarray[i][j].fourWayA5D8=true;
+            GridLayoutManager.boardarray[i][j].setFourWayA5D8(true);
             FourWayA5D8[a]=GridLayoutManager.boardarray[i][j];
         }
         /*FourWayE1H4[7][4] = new BoardCell("e1", CellColor.BLACK, 7, 4, false,false, false,false,false,false,false,false,false,false,false,false,true);
@@ -130,7 +130,7 @@ public class BoardArray extends JFrame
         FourWayE1H4[4][7] = new BoardCell("h4", CellColor.CLEAN, 4, 7, false,false, false,false,false,false,false,false,false,false,false,false,true);*/
         // e1, f2, g3, h4
         for (int i=7,j=4,a=0;i>=4&&j<=7;i--,j++,a++){
-            GridLayoutManager.boardarray[i][j].fourWayE1H4=true;
+            GridLayoutManager.boardarray[i][j].setFourWayE1H4(true);
             FourWayE1H4[a]=GridLayoutManager.boardarray[i][j];
         }
         // g1, f2, e3, d4, c5, b6, a7
@@ -153,18 +153,63 @@ public class BoardArray extends JFrame
 
         // e1, f2, g3, h4
     }
+
+    public static BoardCell[] getEightWay() {
+        return EightWay;
+    }
+
+    public static BoardCell[] getSevenWayG1A7() {
+        return SevenWayG1A7;
+    }
+
+    public static BoardCell[] getSevenWayH2B8() {
+        return SevenWayH2B8;
+    }
+
+    public static BoardCell[] getSixWayC1H6() {
+        return SixWayC1H6;
+    }
+
+    public static BoardCell[] getSixWayA3F8() {
+        return SixWayA3F8;
+    }
+
+    public static BoardCell[] getThreeWayC1A3() {
+        return ThreeWayC1A3;
+    }
+
+    public static BoardCell[] getThreeWayH6F8() {
+        return ThreeWayH6F8;
+    }
+
+    public static BoardCell[] getFiveWayH4D8() {
+        return FiveWayH4D8;
+    }
+
+    public static BoardCell[] getFiveWayE1A5() {
+        return FiveWayE1A5;
+    }
+
+    public static BoardCell[] getFourWayA5D8() {
+        return FourWayA5D8;
+    }
+
+    public static BoardCell[] getFourWayE1H4() {
+        return FourWayE1H4;
+    }
+
     public static void DeleteCaptured(int i, int j, int g, int h){
         if(g<i && h>j){
-        GridLayoutManager.boardarray[g+1][h-1].captured=true;
+        GridLayoutManager.boardarray[g+1][h-1].setCaptured(true);
         }
         else if(g<i && h<j){
-            GridLayoutManager.boardarray[g+1][h+1].captured=true;
+            GridLayoutManager.boardarray[g+1][h+1].setCaptured(true);
         }
         else if(g>i && h<j){
-            GridLayoutManager.boardarray[g-1][h+1].captured=true;
+            GridLayoutManager.boardarray[g-1][h+1].setCaptured(true);
         }
         else if(g>i && h>j){
-            GridLayoutManager.boardarray[g-1][h-1].captured=true;
+            GridLayoutManager.boardarray[g-1][h-1].setCaptured(true);
         }
     }
 }

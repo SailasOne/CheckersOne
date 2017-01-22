@@ -15,15 +15,15 @@ public class ButtonHandler implements ActionListener {
                     for (int b = 0; b < 8; b++) {
                         if ((a + b) % 2 != 0) {
                             if (source == GridLayoutManager.squares2[a][b]) {
-                                if ((GridLayoutManager.boardarray[a][b].color.equals(CellColor.WHITE))&&GridLayoutManager.player.equals("white")) {
+                                if ((GridLayoutManager.boardarray[a][b].getCellColor().equals(CellColor.WHITE))&&GridLayoutManager.getPlayer().equals("white")) {
                                     GridLayoutManager.isCheckerChosen(a, b);
-                                    GridLayoutManager.one = a;
-                                    GridLayoutManager.two = b;
+                                    GridLayoutManager.setOne(a);
+                                    GridLayoutManager.setTwo(b);
                                 }
-                                else if((GridLayoutManager.boardarray[a][b].color.equals(CellColor.BLACK))&&GridLayoutManager.player.equals("black")){
+                                else if((GridLayoutManager.boardarray[a][b].getCellColor().equals(CellColor.BLACK))&&GridLayoutManager.getPlayer().equals("black")){
                                     GridLayoutManager.isCheckerChosen(a, b);
-                                    GridLayoutManager.one = a;
-                                    GridLayoutManager.two = b;
+                                    GridLayoutManager.setOne(a);
+                                    GridLayoutManager.setTwo(b);
                                 }
                             }
                         }
@@ -33,14 +33,14 @@ public class ButtonHandler implements ActionListener {
                     for (int j = 0; j < 8; j++) {
                         if ((i + j) % 2 != 0) {
                              if (source == GridLayoutManager.squares2[i][j] &&
-                                    (!(GridLayoutManager.boardarray[i][j].color==CellColor.BLACK) && GridLayoutManager.player.equals("white"))){
-                                GridLayoutManager.processClick(i, j, GridLayoutManager.one, GridLayoutManager.two);
+                                    (!(GridLayoutManager.boardarray[i][j].getCellColor()==CellColor.BLACK) && GridLayoutManager.getPlayer().equals("white"))){
+                                GridLayoutManager.processClick(i, j, GridLayoutManager.getOne(), GridLayoutManager.getTwo());
                                 return;
                             }
                             else if(source == GridLayoutManager.squares2[i][j]&&
-                                    (!(GridLayoutManager.boardarray[i][j].color==CellColor.WHITE)&&GridLayoutManager.player.equals("black")) ){
+                                    (!(GridLayoutManager.boardarray[i][j].getCellColor()==CellColor.WHITE)&&GridLayoutManager.getPlayer().equals("black")) ){
 
-                                    GridLayoutManager.processClick(i, j, GridLayoutManager.one, GridLayoutManager.two);
+                                    GridLayoutManager.processClick(i, j, GridLayoutManager.getOne(), GridLayoutManager.getTwo());
                                     return;
 
                             }
@@ -51,54 +51,54 @@ public class ButtonHandler implements ActionListener {
             } catch (IOException a) {
                 a.getStackTrace();
             }
-        if(source == Checkers.btn && !GridLayoutManager.attackInd) {
+        if(source == Checkers.btn && !GridLayoutManager.getAttackInd()) {
             GridLayoutManager.SwapPlayer();
             Checkers.blackCount=0;
             Checkers.whiteCount=0;
             for (int a = 0; a < 8; a++) {
                 for (int b = 0; b < 8; b++) {
                     if ((a + b) % 2 != 0) {
-                        if(GridLayoutManager.boardarray[a][b].color==CellColor.BLACK){
+                        if(GridLayoutManager.boardarray[a][b].getCellColor()==CellColor.BLACK){
                             Checkers.blackCount++;
                         }
-                        if(GridLayoutManager.boardarray[a][b].color==CellColor.WHITE){
+                        if(GridLayoutManager.boardarray[a][b].getCellColor()==CellColor.WHITE){
                             Checkers.whiteCount++;
                         }
-                        if (GridLayoutManager.boardarray[a][b].captured){
-                            if(GridLayoutManager.boardarray[a][b].queen){GridLayoutManager.boardarray[a][b].queen=false;}
-                            GridLayoutManager.boardarray[a][b].color=CellColor.CLEAN;
+                        if (GridLayoutManager.boardarray[a][b].getCaptured()){
+                            if(GridLayoutManager.boardarray[a][b].getQueen()){GridLayoutManager.boardarray[a][b].setQueen(false);}
+                            GridLayoutManager.boardarray[a][b].setCellColor(CellColor.CLEAN);
                             GridLayoutManager.boardarray[a][b].addWay(CellColor.CLEAN);
                             GridLayoutManager.squares2[a][b].setIcon(null);
-                            GridLayoutManager.boardarray[a][b].captured=false;
+                            GridLayoutManager.boardarray[a][b].setCaptured(false);
                         }
-                        if (GridLayoutManager.boardarray[a][b].border) {
-                                GridLayoutManager.boardarray[a][b].border=false;
+                        if (GridLayoutManager.boardarray[a][b].getCellBorder()) {
+                                GridLayoutManager.boardarray[a][b].setCellBorder(false);
                                 GridLayoutManager.boardarray[a][b].addWay(false);
                                 GridLayoutManager.squares2[a][b].setBackground(Color.BLACK);
                             }
                         if (GridLayoutManager.squares2[a][b].getBackground().equals(Color.pink) || GridLayoutManager.squares2[a][b].getBackground().equals(Color.blue)){
                             GridLayoutManager.squares2[a][b].setBackground(Color.BLACK);
                         }
-                        if(GridLayoutManager.boardarray[a][b].color==CellColor.WHITE && a==7){
-                            GridLayoutManager.boardarray[a][b].queen = true;
+                        if(GridLayoutManager.boardarray[a][b].getCellColor()==CellColor.WHITE && a==7){
+                            GridLayoutManager.boardarray[a][b].setQueen(true);
                             GridLayoutManager.boardarray[a][b].change(CellColor.WHITE);
 
                         }
-                        if(GridLayoutManager.boardarray[a][b].color==CellColor.BLACK && a==0){
-                            GridLayoutManager.boardarray[a][b].queen = true;
+                        if(GridLayoutManager.boardarray[a][b].getCellColor()==CellColor.BLACK && a==0){
+                            GridLayoutManager.boardarray[a][b].setQueen(true);
                             GridLayoutManager.boardarray[a][b].change(CellColor.BLACK);
                         }
                     }
                 }}
 
-            GridLayoutManager.current="checkerBlack";
-            GridLayoutManager.one = 7;
-            GridLayoutManager.two = 1;
-            GridLayoutManager.row = 7;
-            GridLayoutManager.col = 1;
-            GridLayoutManager.attack=false;
-            GridLayoutManager.attackInd=false;
-            GridLayoutManager.queenTurn=false;
+            GridLayoutManager.setCurrent("checkerBlack");
+            GridLayoutManager.setOne(7);
+            GridLayoutManager.setTwo(1);
+            GridLayoutManager.setRow(7);
+            GridLayoutManager.setCol(1);
+            GridLayoutManager.setAttack(false);
+            GridLayoutManager.setAttackInd(false);
+            GridLayoutManager.setQueenTurn(false);
             Checkers.first="";
             Checkers.second="";
 
@@ -106,8 +106,8 @@ public class ButtonHandler implements ActionListener {
                 for (int b = 0; b < 8; b++) {
                     if ((a + b) % 2 != 0) {
                         if (GridLayoutManager.boardarray[a][b].tryCapture()) {
-                            GridLayoutManager.attack=true;
-                            GridLayoutManager.attackInd=true;
+                            GridLayoutManager.setAttack(true);
+                            GridLayoutManager.setAttackInd(true);
                         }
                     }
                 }
